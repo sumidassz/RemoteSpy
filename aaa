@@ -54,4 +54,4 @@ local Options = Fluent.Options
 do
     Tabs.Farm:AddToggle("autoNPC", {Title = "Auto NPC", Default = false })
 end
-coroutine.resume(coroutine.create(function() while task.wait() and not Fluent.Unloaded do if Options.autoNPC.Value then pushAllNPCs({"Kaskashi"}) end end end))
+coroutine.resume(coroutine.create(function() while task.wait() and not Fluent.Unloaded do if Options.autoNPC.Value then pushAllNPCs({"Kaskashi"}, true) end end end))
