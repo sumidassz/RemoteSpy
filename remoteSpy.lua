@@ -96,7 +96,7 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 						out[#out+1] = "("..parseVal.."}"
 					end
 				end
-			    if #out != i then
+			    if #out ~= i then
 				print(#out, #out+1, #data, "kk")
 				out[#out+1] = ")"
 				end
