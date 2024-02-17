@@ -90,18 +90,14 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 				local parseVal = parseData(nowVal, numTabs+1, false, overflow, isCyclic)
 				if isDict then
 					local nowValType = typeof(nowVal)
-					out[#out+1] = string.rep(tabChar, numTabs+1) .. parseKey .. " = " .. parseVal .. ","
+					out[#out+1] = parseKey .. " = " .. parseVal .. ","
 				else
-					out[#out+1] = string.rep(tabChar, numTabs+1) .. parseVal
-					warn(string.rep(tabChar, numTabs+1) .. parseVal, "       kk||kk      ", parseVal)
+					print(#out, #out+1, #data)
+					out[#out+1] = parseVal.."}"
 				end
-			    if i == #data then
-						print(string.rep(tabChar, numTabs))
-					    out[#out+1] = string.rep(tabChar, numTabs) .. ")"
-			    else
-						print("b", string.rep(tabChar, numTabs))
-				out[#out+1] = string.rep(tabChar, numTabs) .. "}"
-			    end
+			    if #out == #data then
+				out[#out+1] = ")"
+				end
 			end
 		else
 			local data2 = {}
