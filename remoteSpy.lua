@@ -94,14 +94,14 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 				else
 					out[#out+1] = string.rep(tabChar, numTabs+1) .. parseVal
 				end
+			    if i == #data then
+						print(#data, #out, #out == #data, #out+1 == #data)
+					    out[#out+1] = string.rep(tabChar, numTabs) .. "}"
+			    else
+						print("b", #data, #out, #out == #data, #out+1 == #data)
+				out[#out+1] = string.rep(tabChar, numTabs) .. ")"
+			    end
 			end
-            if #out == #data then
-				print(#data, #out, #out == #data, #out+1 == #data)
-			    out[#out+1] = string.rep(tabChar, numTabs) .. "}"
-            else
-				print("b", #data, #out, #out == #data, #out+1 == #data)
-                out[#out+1] = string.rep(tabChar, numTabs) .. ")"
-            end
 		else
 			local data2 = {}
 			for i = 1, #data do
