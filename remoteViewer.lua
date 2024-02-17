@@ -8,10 +8,10 @@ function Material.ViewRemote(text, GUI)
 	TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	TextLabel.Name = "ViewRemote"
 	TextLabel.BorderSizePixel = 0
-	TextLabel.Position = UDim2.new(0.459895819, 0, 0.185356811, 0)
-	TextLabel.Size = UDim2.new(0.20, 0, 0.125, 0)
+	TextLabel.Position = UDim2.new(0.46, 0, 0.185356811, 0)
+	TextLabel.Size = UDim2.new(0.25, 0, 0.10, 0)
 	TextLabel.Font = Enum.Font.SourceSans
-	TextLabel.Text = text
+	TextLabel.Text = "  "..text
 	TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
 	TextLabel.TextScaled = true
 	TextLabel.TextWrapped = true
@@ -28,7 +28,7 @@ function Material.ViewRemote(text, GUI)
 	ImageButton.AutoButtonColor = false
 	ImageButton.Image = "rbxassetid://5574299686"
 	ImageButton.ImageColor3 = Color3.fromRGB(124, 124, 124)
-	ImageButton.MouseClickButton1:Connect(function()
+	ImageButton.MouseButton1Click:Connect(function()
 		TextLabel:Destroy()
 	end)
 end
