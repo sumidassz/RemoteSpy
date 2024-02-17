@@ -9,7 +9,7 @@ function Material.ViewRemote(text, GUI)
 	TextLabel.Name = "ViewRemote"
 	TextLabel.BorderSizePixel = 0
 	TextLabel.Position = UDim2.new(0.459895819, 0, 0.185356811, 0)
-	TextLabel.Size = UDim2.new(0, 697, 0, 113)
+	TextLabel.Size = UDim2.new(0.20, 0, 0.125, 0)
 	TextLabel.Font = Enum.Font.SourceSans
 	TextLabel.Text = text
 	TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
