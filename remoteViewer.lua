@@ -1,10 +1,12 @@
 local Material = {}
 function Material.ViewRemote(text, GUI)
+	if GUI:FindFirstChild("ViewRemote") then return end
 	local TextLabel = Instance.new("TextLabel", GUI)
 	local ImageButton = Instance.new("ImageButton")
 
 	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	TextLabel.Name = "ViewRemote"
 	TextLabel.BorderSizePixel = 0
 	TextLabel.Position = UDim2.new(0.459895819, 0, 0.185356811, 0)
 	TextLabel.Size = UDim2.new(0, 697, 0, 113)
