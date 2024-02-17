@@ -241,10 +241,9 @@ remoteSpyDropdown = Main.Dropdown({
     Multi = false,
     Default = "",
     Callback = function(value)
-	print(value, remoteSpyArray[value], remoteSpyArrayNames[value])
-	Options.remoteSpyDropdown.Value = remoteSpyArray[value]
+	remoteSpyDropdown:SetValue(remoteSpyArray[value])
     end,
-    Options = {}
+    Options = remoteSpyArrayNames
 })
 Main.Button({
 	Text = "Refresh Remote List",
