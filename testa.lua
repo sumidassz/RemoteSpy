@@ -1,10 +1,28 @@
---[[
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+_G.scanRemotes = false
+local copyRemote = false
+local X = Material.Load({
+	Title = "Anime Fighters Simulator",
+	Style = 1,
+	SizeX = 400,
+	SizeY = 350,
+	Theme = "Light",
+	ColorOverrides = {
+		MainFrame = Color3.fromRGB(235,235,235)
+	}
+})
 
-	-Created by Vaeb.
+local Page = X.New({
+	Title = "Auto-Farm"
+})
 
-]]
-
-_G.scanRemotes = true
+Page.Toggle({
+	Text = "On or Off",
+	Callback = function(value)
+		copyRemote = value
+	end,
+	Enabled = false
+})
 
 _G.ignoreNames = {
 	Event = true;
@@ -65,7 +83,7 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 		end
 
 		if isDict or hasTables or forceDict then
-			out[#out+1] = "{"
+			out[#out+1] = (isCyclic and "Cyclic " or "") .. "{"
 			table.sort(data, function(a, b)
 				local aType = typeof(a[2])
 				local bType = typeof(b[2])
@@ -89,7 +107,7 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 					local nowValType = typeof(nowVal)
 					out[#out+1] = parseKey .. " = " .. parseVal .. ";"
 				else
-					out[#out+1] =  parseVal .. ";"
+					out[#out+1] = parseVal .. ","
 				end
 			end
 			out[#out+1] = "}"
@@ -175,9 +193,9 @@ local incId = 0
 local function getValues(self, key, ...)
 	return {realMethods[key](self, ...)}
 end
-
+local copyingRemote = false
 gameMeta.__index, gameMeta.__namecall = function(self, key)
-	if not realMethods[key] or _G.ignoreNames[self.Name] or not _G.scanRemotes then return pseudoEnv.__index(self, key) end
+	if not realMethods[key] or _G.ignoreNames[self.Name] or not Options.Main.remoteSpy.Value or Material.isClosed then return pseudoEnv.__index(self, key) end
 	return function(_, ...)
 		incId = incId + 1
 		local nowId = incId
@@ -191,6 +209,7 @@ gameMeta.__index, gameMeta.__namecall = function(self, key)
 		if ok then
 			returnValues = data
 			print("game."..self:GetFullName()..":"..key..tableToString(allPassed))
+            if Options.Main.copyRemote.Value then setclipboard("game."..self:GetFullName()..":"..key..tableToString(allPassed)) end
 		else
 			print("\n" .. strId .. " ClassName: " .. self.ClassName .. " | Path: " .. self:GetFullName() .. " | Method: " .. key .. "\n" .. strId .. " Packed Arguments: " .. tableToString(allPassed) .. "\n" .. strId .. " Packed Returned: [ERROR] " .. data .. "\n")
 		end
@@ -198,5 +217,4 @@ gameMeta.__index, gameMeta.__namecall = function(self, key)
 		return unpack(returnValues)
 	end
 end
-
-print("\nRan Vaeb's RemoteSpy\n")
+print("\nRemoteSpy\n")
