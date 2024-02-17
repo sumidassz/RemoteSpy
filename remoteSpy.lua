@@ -65,7 +65,7 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 
 		if isDict or hasTables or forceDict then
 			local firstSended = false
-			if #out+1 == #data then firstSended = true end
+			if #out+1 ~= #data then firstSended = true end
 			table.sort(data, function(a, b)
 				local aType = typeof(a[2])
 				local bType = typeof(b[2])
@@ -91,9 +91,9 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 				else
 					print(#out, #out+1, #data)
 					if firstSended then
-						out[#out+1] = "{"..parseVal.."}"
+						out[#out+1] = "{"..parseVal
 					else
-						out[#out+1] = "("..parseVal.."}"
+						out[#out+1] = "("..parseVal
 					end
 				end
 			    if #out+1 ~= i then
