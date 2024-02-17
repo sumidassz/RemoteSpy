@@ -1,5 +1,6 @@
 local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/sumidassz/RemoteSpy/main/RemoteSpyMenu.lua"))()
-local remoteSpyDropdown = nil
+warn('aaa')
+local remoteSpyDropdown
 _G.scanRemotes = false
 
 _G.ignoreNames = {
