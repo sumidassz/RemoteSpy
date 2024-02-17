@@ -1,3 +1,4 @@
+warn('zzz')
 local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/sumidassz/RemoteSpy/main/RemoteSpyMenu.lua"))()
 warn('aaa')
 local remoteSpyDropdown
