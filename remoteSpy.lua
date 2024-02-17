@@ -65,9 +65,9 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 
 		if isDict or hasTables or forceDict then
             if #out == 0 then
-                out[#out+1] = (isCyclic and "Cyclic " or "") .. "("
+                out[#out+1] = "("
             else
-                out[#out+1] = (isCyclic and "Cyclic " or "") .. "{"
+                out[#out+1] = "{"
             end
 			table.sort(data, function(a, b)
 				local aType = typeof(a[2])
@@ -96,8 +96,10 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 				end
 			end
             if #out == #data then
+				print(#data, #out, #out == #data, #out+1 == #data)
 			    out[#out+1] = string.rep(tabChar, numTabs) .. "}"
             else
+				print("b", #data, #out, #out == #data, #out+1 == #data)
                 out[#out+1] = string.rep(tabChar, numTabs) .. ")"
             end
 		else
