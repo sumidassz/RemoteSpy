@@ -196,7 +196,7 @@ gameMeta.__index, gameMeta.__namecall = function(self, key)
 		if ok then
 			returnValues = data
             if remoteSpyArray[self:GetFullName()] ~= "game."..self:GetFullName()..":"..key..tableToString(allPassed) then
-			    remoteSpyArray[self:GetFullName()] ~= "game."..self:GetFullName()..":"..key..tableToString(allPassed)
+			    remoteSpyArray[self:GetFullName()] = "game."..self:GetFullName()..":"..key..tableToString(allPassed)
 				table.insert(remoteSpyArrayNames, self:GetFullName())
             end
         end
