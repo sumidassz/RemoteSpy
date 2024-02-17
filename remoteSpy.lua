@@ -96,10 +96,10 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 				end
 			    if i == #data then
 						print(#data, #out, #out == #data, #out+1 == #data)
-					    out[#out+1] = string.rep(tabChar, numTabs) .. "}"
+					    out[#out+1] = string.rep(tabChar, numTabs) .. ")"
 			    else
 						print("b", #data, #out, #out == #data, #out+1 == #data)
-				out[#out+1] = string.rep(tabChar, numTabs) .. ")"
+				out[#out+1] = string.rep(tabChar, numTabs) .. "}"
 			    end
 			end
 		else
@@ -113,7 +113,7 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 			out[#out+1] = "(" .. table.concat(data2, ", ") .. ")"
 		end
 
-		return table.concat(out, "\n")
+		return table.concat(out, "")
 	else
 		local returnVal = nil
 		if (objType == "string" or objType == "Content") and (not isKey or tonumber(obj:sub(1, 1))) then
