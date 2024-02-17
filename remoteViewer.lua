@@ -16,7 +16,7 @@ function Material.ViewRemote(text, GUI)
 	TextLabel.TextScaled = true
 	TextLabel.TextWrapped = true
 	TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-	Text.ZIndex = 9999999
+	TextLabel.ZIndex = 9999999
 
 	ImageButton.Parent = TextLabel
 	ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
