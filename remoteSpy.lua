@@ -227,6 +227,7 @@ Main.DataTable({
 	Text = "DataTable RemoteSpy",
     Id = "Main",
 	Callback = function(ChipSet)
+		_G.scanRemotes = Options.Main.remoteSpy.Value
 	end,
 	Options = {
         ["Remote Spy"] = {Enabled = false, Id = "remoteSpy"}
