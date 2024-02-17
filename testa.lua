@@ -1,6 +1,6 @@
 local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/sumidassz/RemoteSpy/main/RemoteSpyMenu.lua"))()
-function createHideButton(Material)
-    local HideButton = Instance.new("ImageButton", Material.GUI)
+function createHideButton(gui)
+    local HideButton = Instance.new("ImageButton", gui.GUI)
     local UICorner = Instance.new("UICorner", HideButton)
     HideButton.Name = "HideButton"
     HideButton.BackgroundColor3 = Color3.fromRGB(59, 59, 59)
@@ -11,7 +11,7 @@ function createHideButton(Material)
     HideButton.Size = UDim2.new(0.0534201749, 0, 0.0980202928, 0)
     HideButton.AutoButtonColor = false
     HideButton.MouseButton1Up:Connect(function()
-        Material.MainFrame.Visible = not Material.MainFrame.Visible
+        gui.MainFrame.Visible = not gui.MainFrame.Visible
     end)
 end
 local Window = Material.Load({Title = "Remote Spy by Miojo Hub", Style = 2, SizeX = 400, SizeY = 350, Theme = "Aqua"})
@@ -217,7 +217,7 @@ gameMeta.__index, gameMeta.__namecall = function(self, key)
 		if ok then
 			returnValues = data
 			print("game."..self:GetFullName()..":"..key..tableToString(allPassed))
-            if Options.Main.copyRemote then setclipboard("game."..self:GetFullName()..":"..key..tableToString(allPassed)) end
+            if Options.Main.copyRemote.Value then setclipboard("game."..self:GetFullName()..":"..key..tableToString(allPassed)) end
 		else
 			print("\n" .. strId .. " ClassName: " .. self.ClassName .. " | Path: " .. self:GetFullName() .. " | Method: " .. key .. "\n" .. strId .. " Packed Arguments: " .. tableToString(allPassed) .. "\n" .. strId .. " Packed Returned: [ERROR] " .. data .. "\n")
 		end
