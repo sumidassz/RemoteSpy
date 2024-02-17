@@ -64,7 +64,8 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 		end
 
 		if isDict or hasTables or forceDict then
-			
+			local firstSended = true
+			if #out+1 == #data then firstSended = false end
 			table.sort(data, function(a, b)
 				local aType = typeof(a[2])
 				local bType = typeof(b[2])
