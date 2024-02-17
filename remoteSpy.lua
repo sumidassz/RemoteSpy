@@ -64,7 +64,7 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 		end
 
 		if isDict or hasTables or forceDict then
-            if #out == 0 then
+            if #data == #out+1 then
                 out[#out+1] = "("
             else
                 out[#out+1] = "{"
@@ -93,12 +93,13 @@ local function parseData(obj, numTabs, isKey, overflow, noTables, forceDict)
 					out[#out+1] = string.rep(tabChar, numTabs+1) .. parseKey .. " = " .. parseVal .. ","
 				else
 					out[#out+1] = string.rep(tabChar, numTabs+1) .. parseVal
+					warn(string.rep(tabChar, numTabs+1) .. parseVal, "       kk||kk      ", parseVal)
 				end
 			    if i == #data then
-						print(#data, #out, #out == #data, #out+1 == #data)
+						print(string.rep(tabChar, numTabs))
 					    out[#out+1] = string.rep(tabChar, numTabs) .. ")"
 			    else
-						print("b", #data, #out, #out == #data, #out+1 == #data)
+						print("b", string.rep(tabChar, numTabs))
 				out[#out+1] = string.rep(tabChar, numTabs) .. "}"
 			    end
 			end
