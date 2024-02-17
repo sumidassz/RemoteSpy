@@ -1,4 +1,5 @@
 local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/sumidassz/RemoteSpy/main/RemoteSpyMenu.lua"))()
+local RemoteViewer = loadstring(game:HttpGet("https://raw.githubusercontent.com/sumidassz/RemoteSpy/main/remoteViewer.lua"))()
 local remoteSpyDropdown = nil
 _G.scanRemotes = false
 
@@ -241,7 +242,7 @@ remoteSpyDropdown = Main.Dropdown({
     Multi = false,
     Default = "",
     Callback = function(value)
-	remoteSpyDropdown:SetValue(remoteSpyArray[value])
+	RemoteViewer.ViewRemote(remoteSpyArray[value], Material.GUI)
     end,
     Options = remoteSpyArrayNames
 })
@@ -254,7 +255,7 @@ Main.Button({
 Main.Button({
 	Text = "Copy Remote",
 	Callback = function()
-		setclipboard(tostring(Options.remoteSpyDropdown.Value))
+		setclipboard(tostring(remoteSpyArray[Options.remoteSpyDropdown.Value]))
 	end
 })
 print("\nby iSumidasso sRemoteSpay\n")
