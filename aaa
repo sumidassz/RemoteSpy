@@ -9,16 +9,23 @@ function getWorld()
         end
     end
 end
-function pushAllNPCs(array)
+function getNearestMob(array)
     if #array == 0 or getWorld() == nil then return end
+    local dist, thing = math.huge
     for i, v in next, getWorld().NPCSpawn:GetChildren() do
         if table.find(array, v.Name) and v:IsA("Model") and v:FindFirstChild("NPCInfo") and v["NPCInfo"]:FindFirstChild("Health") and v["NPCInfo"].Health.Value > 0 then
-            v:PivotTo(game.Players.LocalPlayer.Character:GetPivot() * CFrame.new(1,0,0))
+            local mag = (game.Players.LocalPlayer.Character:Getpivot().Position - v:GetPivot().Position).magnitude
+            if mag ~= nil and mag < dist then
+                dist = mag
+                thing = v
+            end
         end
     end
+    return thing
 end
 function attackMob(array, pushAll)
-    if pushAll then pushAllNPCs(array) end
+    isMobAttacking = getNearestMob(array) or nil
+    if pushAll then isMobAttacking:PivotTo(game.Players.LocalPlayer.Character:GetPivot() * CFrame.new(1,0,0)) end
     game.ReplicatedStorage.Remotes.Keybinds.Attack:FireServer()
 end
 function createHideButton(gui, window)
@@ -54,4 +61,4 @@ local Options = Fluent.Options
 do
     Tabs.Farm:AddToggle("autoNPC", {Title = "Auto NPC", Default = false })
 end
-coroutine.resume(coroutine.create(function() while task.wait() and not Fluent.Unloaded do if Options.autoNPC.Value then pushAllNPCs({"Kaskashi"}, true) end end end))
+coroutine.resume(coroutine.create(function() while task.wait() and not Fluent.Unloaded do if Options.autoNPC.Value then pushAllNPCs({"Ninbruto"}, true) end end end))
