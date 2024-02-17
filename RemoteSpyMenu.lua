@@ -1107,8 +1107,8 @@ function Material.Load(Config)
 						DropdownValue = Value
 						NewButton.ImageColor3 = Color3.fromRGB(72, 69, 87)
 						Material.Options[tostring(DropdownId)]["Value"] = Value
+                   				RemoteViewer.ViewRemote(Value, Material.GUI)
 					end
-                    RemoteViewer.ViewRemote(Value, Material.GUI)
 				end)
 			end)
 			if MultiDropdown then Material.Options[tostring(DropdownId)]["Value"] = {}
@@ -1132,6 +1132,10 @@ function Material.Load(Config)
 
 			function DropdownLibrary:SetText(Value)
 				DropdownTitle.Text = Value
+			end
+			
+			function DropdownLibrary:SetValue(Value)
+				Material.Options[tostring(DropdownId)]["Value"] = Value
 			end
 
 			function DropdownLibrary:GetText()
@@ -1188,8 +1192,8 @@ function Material.Load(Config)
 							DropdownValue = Value
 							NewButton.ImageColor3 = Color3.fromRGB(72, 69, 87)
 							Material.Options[tostring(DropdownId)]["Value"] = Value
+                   					RemoteViewer.ViewRemote(Value, Material.GUI)
 						end
-                        RemoteViewer.ViewRemote(Value, Material.GUI)
 					end)
 				end)
 			end
