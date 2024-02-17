@@ -195,9 +195,9 @@ gameMeta.__index, gameMeta.__namecall = function(self, key)
 
 		if ok then
 			returnValues = data
-            if not table.find(remoteSpyArray ,"game."..self:GetFullName()..":"..key..tableToString(allPassed)) and self:GetFullName():match("%w+$") ~= nil then
-			    table.insert(remoteSpyArray, "game."..self:GetFullName()..":"..key..tableToString(allPassed))
-				remoteSpyArrayNames[self:GetFullName():match("%w+$")] = "game."..self:GetFullName()..":"..key..tableToString(allPassed)
+            if self:GetFullName():match("%w+$") ~= nil and remoteSpyArray[self:GetFullName():match("%w+$")] ~= "game."..self:GetFullName()..":"..key..tableToString(allPassed) then
+			    remoteSpyArray[self:GetFullName():match("%w+$")] ~= "game."..self:GetFullName()..":"..key..tableToString(allPassed)
+				table.insert(remoteSpyArrayNames, self:GetFullName():match("%w+$"))
             end
         end
 
