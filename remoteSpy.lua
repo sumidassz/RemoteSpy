@@ -195,9 +195,9 @@ gameMeta.__index, gameMeta.__namecall = function(self, key)
 
 		if ok then
 			returnValues = data
-            if self:GetFullName():match("%w+$") ~= nil and remoteSpyArray[self:GetFullName():match("%w+$")] ~= "game."..self:GetFullName()..":"..key..tableToString(allPassed) then
-			    remoteSpyArray[self:GetFullName():match("%w+$")] ~= "game."..self:GetFullName()..":"..key..tableToString(allPassed)
-				table.insert(remoteSpyArrayNames, self:GetFullName():match("%w+$"))
+            if remoteSpyArray[self:GetFullName()] ~= "game."..self:GetFullName()..":"..key..tableToString(allPassed) then
+			    remoteSpyArray[self:GetFullName()] ~= "game."..self:GetFullName()..":"..key..tableToString(allPassed)
+				table.insert(remoteSpyArrayNames, self:GetFullName())
             end
         end
 
@@ -241,7 +241,7 @@ remoteSpyDropdown = Main.Dropdown({
     Multi = false,
     Default = "",
     Callback = function(value)
-	Options.remoteSpyDropdown.Value = remoteSpyArrayNames[value]
+	Options.remoteSpyDropdown.Value = remoteSpyArray[value]
     end,
     Options = {}
 })
