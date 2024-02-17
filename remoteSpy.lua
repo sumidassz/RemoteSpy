@@ -8,6 +8,7 @@ _G.ignoreNames = {
 }
 
 local remoteSpyArray = {}
+local remoteSpyArrayNames = {}
 setreadonly(getrawmetatable(game), false)
 local pseudoEnv = {}
 local gameMeta = getrawmetatable(game)
@@ -194,8 +195,9 @@ gameMeta.__index, gameMeta.__namecall = function(self, key)
 
 		if ok then
 			returnValues = data
-            if not table.find(remoteSpyArray ,"game."..self:GetFullName()..":"..key..tableToString(allPassed)) then
-			    table.insert(remoteSpyArray ,"game."..self:GetFullName()..":"..key..tableToString(allPassed))
+            if not table.find(remoteSpyArray ,"game."..self:GetFullName()..":"..key..tableToString(allPassed)) and self:GetFullName():match("%w+$") ~= nil then
+			    table.insert(remoteSpyArray, "game."..self:GetFullName()..":"..key..tableToString(allPassed))
+				remoteSpyArrayNames[self:GetFullName():match("%w+$")] = "game."..self:GetFullName()..":"..key..tableToString(allPassed)
             end
         end
 
@@ -239,13 +241,14 @@ remoteSpyDropdown = Main.Dropdown({
     Multi = false,
     Default = "",
     Callback = function(value)
+	Options.remoteSpyDropdown.Value = remoteSpyArrayNames[value]
     end,
-    Options = remoteSpyArray
+    Options = {}
 })
 Main.Button({
 	Text = "Refresh Remote List",
 	Callback = function()
-        remoteSpyDropdown:SetOptions(remoteSpyArray)
+        remoteSpyDropdown:SetOptions(remoteSpyArrayNames)
 	end
 })
 Main.Button({
