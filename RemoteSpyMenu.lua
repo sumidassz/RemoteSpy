@@ -595,7 +595,6 @@ end
 
 Material["isClosed"] = false
 Material["Options"] = {}
-local RemoteViewer = loadstring(game:HttpGet("https://raw.githubusercontent.com/sumidassz/RemoteSpy/main/remoteViewer.lua"))()
 function Material.Load(Config)
 	local Style = (Config.Style and math.clamp(Config.Style, 1, 3)) or 1
 	local Title = Config.Title or "MaterialLua"
@@ -1107,7 +1106,6 @@ function Material.Load(Config)
 						DropdownValue = Value
 						NewButton.ImageColor3 = Color3.fromRGB(72, 69, 87)
 						Material.Options[tostring(DropdownId)]["Value"] = Value
-                   				RemoteViewer.ViewRemote(Value, Material.GUI)
 					end
 				end)
 			end)
@@ -1132,10 +1130,6 @@ function Material.Load(Config)
 
 			function DropdownLibrary:SetText(Value)
 				DropdownTitle.Text = Value
-			end
-			
-			function DropdownLibrary:SetValue(Value)
-				Material.Options[tostring(DropdownId)]["Value"] = Value
 			end
 
 			function DropdownLibrary:GetText()
@@ -1192,7 +1186,6 @@ function Material.Load(Config)
 							DropdownValue = Value
 							NewButton.ImageColor3 = Color3.fromRGB(72, 69, 87)
 							Material.Options[tostring(DropdownId)]["Value"] = Value
-                   					RemoteViewer.ViewRemote(Value, Material.GUI)
 						end
 					end)
 				end)
