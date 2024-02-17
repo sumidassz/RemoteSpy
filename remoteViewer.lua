@@ -29,6 +29,7 @@ function Material.ViewRemote(text, GUI)
 	ImageButton.AutoButtonColor = false
 	ImageButton.Image = "rbxassetid://5574299686"
 	ImageButton.ImageColor3 = Color3.fromRGB(124, 124, 124)
+	ImageButton.ZIndex = 99999999
 	ImageButton.MouseButton1Click:Connect(function()
 		TextLabel:Destroy()
 	end)
